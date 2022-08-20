@@ -1,11 +1,7 @@
 import './itemes.css';
 
 import React from 'react';
-import ItemCount from '../ItemCount';
 
-const onAdd = (quantity) =>{
-   console.log (`estas llevando ${quantity} unidades`);
- }
 const Item = ({info}) =>{ 
    return (
          <div className='card'>
@@ -13,7 +9,9 @@ const Item = ({info}) =>{
             <p>{info.marca}</p> 
             <p>{info.modelo}</p>
             <p>{info.Precio}</p>
-            <ItemCount initial={1} stock={10} onAdd={onAdd}/>
+            <button className='button'>Ver detalle del producto</button>
+            <hr></hr>
+            <p>stock de productos </p>
          </div>
    );
 }
