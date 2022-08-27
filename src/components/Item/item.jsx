@@ -9,7 +9,7 @@ const Item = ({info}) =>{
             <p>{info.marca}</p> 
             <p>{info.modelo}</p>
             <p>{info.Precio}</p>
-            <Link to={`item/$prodd`}><button className='button'>Ver detalle del producto</button></Link>
+            <Link to={`/item/:prodd`}><button className='button'>Ver detalle del producto</button></Link>
             <hr></hr>
             <p>stock de producto: {info.stock} disponibles </p>
             

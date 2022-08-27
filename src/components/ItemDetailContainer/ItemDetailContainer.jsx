@@ -10,10 +10,10 @@ export function ItemDetailContainer() {
       {id: 1, imagen:"https://http2.mlstatic.com/D_NQ_NP_798686-MLA50207299147_062022-O.webp",stock: 12, marca:"Samsung" ,modelo: "Galaxy A23 128GB Negro", Precio: "$70000"},]
       new Promise((resolve) => {
         setTimeout(()=>{
-          resolve(productos);
+          resolve(productos.find((element)=> element.id === prodd));
         },2000)
       }).then((data)=>{
-       productos.find((element)=>element.id === prodd) 
+       
 
        setItem(data);
       })
