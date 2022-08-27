@@ -226,8 +226,8 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: 'Novedades',
-
+    label: 'Inicio',
+     href: '/',
   },
   {
     label: 'Ofertas',
