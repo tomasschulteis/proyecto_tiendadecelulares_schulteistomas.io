@@ -1,5 +1,5 @@
-.card {
+.card {border: 200px;
     align-items: center;
-    float: left;
-
+    float:left;
+    margin:40px;
 }

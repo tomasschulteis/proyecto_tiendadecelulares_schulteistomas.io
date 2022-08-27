@@ -20,6 +20,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+
 import Cartwidget from '../Cartwidget/Cartwidget';
 
 export default function Navbar() {
@@ -236,16 +237,15 @@ const NAV_ITEMS = [
     children: [
       {
         label:'Apple',
-        href: '#',
+        href: '/marca/Apple',
       },
       {
         label:'Samsung',
-        href: '#',
+        href: '/marca/Samsung',
       },
       {
         label:'Xiaomi',
-
-        href: '#',
+        href: '/marca/Xiaomi',
       },
       {
         label:'Motorola',
