@@ -19,4 +19,23 @@
     margin: 10px;
     padding: 5px;
     color: aliceblue;}
-.buttondemenosymas:hover {background-color: rgb(136, 136, 136);}    
+.buttondemenosymas:hover {background-color: rgb(136, 136, 136);}  
+
+.buttonn {
+    background-color: #6da4c2;
+    border-radius: 12px;
+    margin: 20px;
+    align-items: center;
+    padding: 0.1rem;
+    box-sizing: border-box;
+    color: aliceblue;
+    font-size: 1.5rem;
+}
+.buttonn:hover {background-color: #888888;}
+.notif {
+    color: #817e7e;
+}
+hr{
+    height: 1px;
+  background-color: #817e7e;
+}
