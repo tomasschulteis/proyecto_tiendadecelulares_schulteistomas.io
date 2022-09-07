@@ -1,24 +1,19 @@
-import Navbar from './components/Navbar/Navbar';
+
 import './App.css';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Rutas from './components/routes/Rutas';
+import {CartProvider} from './components/Context/CartContext'
+
 
 
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-      <Navbar/>
-      <Routes>
-      <Route path='/' element={<ItemListContainer greeting="Ofertas del mes de Agosto"/>} />
-      <Route path='/marca/:marcaId' element={<ItemListContainer greeting="Ofertas del mes de Agosto"/>} /> 
-      <Route path='/detalle/:detalleId' element={<ItemDetailContainer/>}/>
-      </Routes>
-      </BrowserRouter>
-    </div>
-  );
+  return(
+    <>
+      <CartProvider>
+        <Rutas/>
+      </CartProvider>
+    </>
+  )
 }
 
 export default App;

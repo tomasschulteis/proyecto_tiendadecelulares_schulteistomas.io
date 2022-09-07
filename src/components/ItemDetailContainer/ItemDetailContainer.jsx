@@ -11,34 +11,32 @@ const productos = [
 ]
 
 export const ItemDetailContainer = () => {
-    const [data,setdata] = useState ({});
-    const {detalleId}= useParams();
-  
-    useEffect(()=> {
-     const getdata = new Promise((resolve) => {
-      setTimeout(()=>{
-        resolve(productos);
-      },3000);      
-     })
 
-     getdata.then(res => setdata(res.find(producto=> producto.id === parseInt(detalleId))));
-    },[]);
-    
-    const [loading, setLoading] = useState(false)
-    useEffect(()=>{
-     setLoading(true)
-     setTimeout(() => {
-      setLoading (false)
-     
-    },3000)
-    
-  },[])
-    
-   return(
+  const [data, setdata] = useState([]);
+  const { detalleId } = useParams();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getdata = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(productos);
+        setLoading(!loading);
+      }, 3000);
+    });
+
+    getdata.then((res) =>
+      setdata(res.find((producto) => producto.id === parseInt(detalleId)))
+    );
+
+  }, []);
+  return (
     <div>
-    <ClipLoader color={'#e25a87'} loading={loading}  size={150}/>
-    <ItemDetail data={data}/>
+      {loading ? (
+        <ClipLoader color={"#e25a87"} loading={loading} size={150} />
+      ) : (
+        <ItemDetail data={data} />
+      )}
     </div>
-   ) 
-}
+  );
+};
 export default ItemDetailContainer;

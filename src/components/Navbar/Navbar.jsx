@@ -1,3 +1,4 @@
+import React, {useContext} from 'react';
 import {
   Box,
   Flex,
@@ -20,12 +21,12 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-
+import * as Router from 'react-router-dom'
 import Cartwidget from '../Cartwidget/Cartwidget';
-
+import { Cartcontext } from '../Context/CartContext';
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const {items} = useContext(Cartcontext);
   return (
     <Box>
       <Flex
@@ -52,13 +53,14 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            MarketPhone
-          </Text>
-
+          <Router.Link to={"/"}>
+           <Text
+             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+             fontFamily={'heading'}
+             color={useColorModeValue('gray.800', 'white')}>
+             MarketPhone
+           </Text>
+          </Router.Link>
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -69,10 +71,10 @@ export default function Navbar() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-          <Cartwidget/>
+          {!!items.length && <Cartwidget/>}
         </Stack>
       </Flex>
-
+  
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
