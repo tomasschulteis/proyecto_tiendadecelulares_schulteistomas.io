@@ -31,9 +31,9 @@
     color: aliceblue;
     font-size: 1.5rem;
 }
-.buttonn:hover {background-color: #888888;}
+.buttonn:hover {background-color: #e5e5e5;}
 .notif {
-    color: #817e7e;
+    color: #f5f5f5;
 }
 hr{
     height: 1px;
