@@ -21,6 +21,7 @@ export const Cart = () => {
      
      <div>
       <Button className='botonnvaciar' onClick={clear}>Vaciar carrito</Button>
+      <Link to="/CheckOut"><Button>CheckOut</Button></Link>
      </div>
     </>
   )
