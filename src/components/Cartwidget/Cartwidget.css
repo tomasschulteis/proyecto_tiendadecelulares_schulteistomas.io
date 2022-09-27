@@ -1,0 +1,23 @@
+.carrito{
+    display: inline-block;
+    margin-right: 2px;
+    position: relative;
+    color: #f2f2f2;
+    
+}
+.carrito:hover{
+    color: #e25a87;
+}
+
+.a{
+    color: white;
+    line-height: 70px;
+    font-size: 18px;
+    padding: 8px 15 px;
+}
+.a:hover{
+    color: #e25a87;
+    border-radius: 5px;
+    box-shadow: 0 0 35px #e25a87;
+    
+}

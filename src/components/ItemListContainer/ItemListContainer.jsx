@@ -3,6 +3,7 @@ import ItemList from '../ItemList/ItemList';
 import ClipLoader from "react-spinners/ClipLoader"
 import { useParams } from 'react-router-dom';
 import {getFirestore,collection,getDocs,query,where} from 'firebase/firestore';
+
 /*const productos = [
   {id: 1, imagen:"/imagenes/samsung_A23_128gb.jpg",stock: 12, marca:"Samsung" ,modelo: "Galaxy A23 128GB Negro", Precio: "$70000"},
   {id: 2,imagen:"/imagenes/iphone-13-Pro.jpg" ,stock: 5,marca: "Apple", modelo: "IPhone 13 Pro Max 5G 256GB Plateado", Precio: "$250000"},
@@ -39,9 +40,9 @@ import {getFirestore,collection,getDocs,query,where} from 'firebase/firestore';
   }, [marcaId])
   
   return (
-    <div>
+    <div className='i'>
      <span>{greeting}</span>
-     <ClipLoader color={'#e25a87'} loading={loading}  size={150} />
+     <ClipLoader  color={'#e25a87'} loading={loading}  size={150} />
      <ItemList  data={data}/>
     </div>
   );

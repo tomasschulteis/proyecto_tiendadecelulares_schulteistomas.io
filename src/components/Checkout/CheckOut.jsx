@@ -1,44 +1,91 @@
-import React,{useContext,useState} from 'react';
+import React,{useContext,useEffect,useState} from 'react';
 import { Cartcontext } from '../Context/CartContext';
-import {addDoc,collection,getFirestore} from 'firebase/firestore';
-
+import {addDoc,collection,getFirestore,getDoc,doc,getDocs} from 'firebase/firestore';
+import "../Checkout/Checkout.css"
 export default function CheckOut() {
-   
-    const {Cart} = useContext (Cartcontext);
-    const [name,setName] =useState('');
-    const [surname,setSurname] =useState('');
-    const [documento,setDocumento] =useState('');
-    const [email,setEmail] =useState('');
-    const [phone,setPhone] =useState('');
-    const [adress,setAdress] =useState('');
-    const [provincia,setProvincia] =useState('');
-    const [localidad,setLocalidad] =useState('');
-    const [codigopostal,setCodigopostal] =useState('');
+  const {items} = useContext(Cartcontext);
+  const db = getFirestore();
+   const valorInicial= {
+    Name: '',
+    Surname:'',
+    Documento:'',
+    Email:'',
+    Phone:'',
+    Adress:'',
+    Provincia:'',
+    Localidad:'',
+    Codigopostal:'',
+    Checkbox:'',
+    Articulo: items.map(item=>({id:item.id, modelo:item.modelo, precio:item.Precio, unidades:item.quantity, marca:item.marca})), 
+    Importefinal:(items.reduce((pv,cv)=> pv + parseFloat(cv.Precio.replace("$","") * parseFloat(cv.quantity)),0))
+   }
 
-    function finalizarCompra(){
-       const db= getFirestore();
-        let order = {buyer: {name,surname,documento,email,phone,adress,provincia,localidad,codigopostal}, items: Cart, total:Cart.reduce((pv,cv)=> pv + parseFloat(cv.Precio.replace("$","") * parseFloat(cv.quantity)),0)}
-        const orderCollection = collection(db,'orderd');
-        addDoc (orderCollection,order).then(({id})=> {
-            console.log(id)
-        })
-    }
+   const [compras,setCompras]= useState(valorInicial)
+   const [receivedata,setreceivedata]= useState([])
+
+   const inputs = (e) => {const {name,value}= e.target;
+    setCompras({...compras,[name]:value})
+  }
+
+   const saveData= async(e)=>{
+    e.preventDefault();
+    try{
+      await addDoc(collection(db,'Compras'),{...compras})
+    }catch(error){console.log(error)};
+    
+    setCompras({...valorInicial})
+   }
+
+   useEffect(()=>{const getreceived= async()=>{
+   try{
+    const querySnapshot = await getDocs(collection(db,'Compras'))
+    const docs = []
+    querySnapshot.forEach ((doc)=>{
+      docs.push({...doc.data(),id:doc.id})
+    })
+     setreceivedata(docs)
+   }catch (error){
+    console.log(error)
+   }
+   }
+   getreceived()
+  },[])
   
     return (
     <>
-     <div>CheckOut</div>
-     <form onSubmit={onsubmit}>
-        <input value={name} onChange={(e) => setName(e.value)} type={"Text"} placeholder="NOMBRE"></input>
-        <input value={surname} onChange={(e) => setSurname(e.value)} type={"Text"} placeholder="APELLIDO"></input>
-        <input value={documento} onChange={(e) => setDocumento(e.value)} type={"number"} placeholder="D.N.I"></input>
-        <input value={email} onChange={(e) => setEmail(e.value)} type={"email"} placeholder="EMAIL"></input>
-        <input value={phone} onChange={(e) => setPhone(e.value)} type={"number"} placeholder="CELULAR"></input>
-        <input value={adress} onChange={(e) => setAdress(e.value)} type={"Text"} placeholder="DIRECCION"></input>
-        <input value={provincia} onChange={(e) => setProvincia(e.value)} type={"Text"} placeholder="PROVINCIA"></input>
-        <input value={localidad} onChange={(e) => setLocalidad(e.value)} type={"Text"} placeholder="LOCALIDAD"></input>
-        <input value={codigopostal} onChange={(e) => setCodigopostal(e.value)} type={"number"} placeholder="CODIGO POSTAL" ></input>
-        <button onClick={finalizarCompra}>Pagar</button>
-     </form>
+     <div className='fondp'>
+       <div className='tituloform'>COMPLETA TU COMPRA:</div>
+       <form className='formregister' onSubmit={saveData}>
+          <input className='controls' name='Name' onChange={inputs} value={compras.Name} type="Text" placeholder="NOMBRE"></input>
+          <input className='controls' name='Surname' onChange={inputs} value={compras.Surname} type="Text" placeholder="APELLIDO"></input>
+          <input className='controls' name='Documento' onChange={inputs} value={compras.Documento} type="number" placeholder="D.N.I"></input>
+          <input className='controls' name='Email' onChange={inputs} value={compras.Email} type="email" placeholder="EMAIL"></input>
+          <input className='controls' name='Phone' onChange={inputs} value={compras.Phone} type="number" placeholder="CELULAR"></input>
+          <input className='controls' name='Adress' onChange={inputs} value={compras.Adress} type="Text" placeholder="DIRECCION"></input>
+          <input className='controls' name='Provincia' onChange={inputs} value={compras.Provincia} type="Text" placeholder="PROVINCIA"></input>
+          <input className='controls' name='Localidad' onChange={inputs} value={compras.Localidad} type="Text" placeholder="LOCALIDAD"></input>
+          <input className='controls' name='Codigopostal' onChange={inputs} value={compras.Codigopostal} type="number" placeholder="CODIGO POSTAL" ></input>
+          <ol className='controlss'>
+            {items.map(((item,indx)=><li key={indx}>{item.modelo}  ({item.quantity}) </li>))}
+          </ol>
+          <div><input className='terminos' name='checkbox' onChange={inputs} value={compras.Checkbox} type="Checkbox"/><a className='terminos' href='/'>Acepto Terminos y Condiciones.</a></div>         
+          <h3 className='preciof'>Precio Final: = $ {parseFloat (items.reduce((pv,cv)=> pv + parseFloat(cv.Precio.replace("$","") * parseFloat(cv.quantity)),0))}</h3>
+         <button className='btnpagar'>CONFIRMAR PAGO</button>
+       </form>
+       <div>
+         <div>
+           {
+            receivedata.map(received=>(
+              <div key={received.id}>
+                <p>id: {received.id}</p>
+                <p>NOMBRE:{received.Name}</p>
+                <p>APELLIDO:{received.Surname}</p>
+              </div>
+            ))
+           }
+         </div>
+       </div>
+      </div>
     </>
   )
 }

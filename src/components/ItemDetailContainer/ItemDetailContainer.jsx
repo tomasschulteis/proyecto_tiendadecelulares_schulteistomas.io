@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader"
 import {getFirestore,doc,getDoc} from 'firebase/firestore';
 
+
 /*
 const productos = [
   {id: 1, imagen:"/imagenes/samsung_A23_128gb.jpg",stock: 12, marca:"Samsung" ,modelo: "Galaxy A23 128GB Negro",especificaciones:"El Samsung Galaxy A23 es un smartphone Android con una pantalla de 6.6 pulgadas a resolución FHD+, potenciado por un procesador Snapdragon 680 con 4GB, 6GB o 8GB de RAM y 64GB o 128GB de almacenamiento interno. Con una cámara cuádruple con lente principal de 50MP en su dorso, el Galaxy A23 tiene una cámara frontal de 8MP en el notch en forma de V, una batería de 5000 mAh de carga rápida, lector de huellas lateral, y corre Android 12." ,Precio: "$70000"},

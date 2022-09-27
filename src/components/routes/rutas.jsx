@@ -6,7 +6,7 @@ import { ItemDetailContainer } from '../ItemDetailContainer/ItemDetailContainer'
 import '../routes/Rutas.css';
 import Cart from "../Cart/Cart";
 import CheckOut from "../Checkout/CheckOut";
-
+import Footer from "../Footer/Footer";
 const Rutas = () => {
    return(
   <>
@@ -14,14 +14,16 @@ const Rutas = () => {
         <BrowserRouter>
             <Navbar/>
             <Routes>
-              <Route path='/' element={<ItemListContainer greeting="Ofertas del mes de Agosto"/>} />
-              <Route path='/marca/:marcaId' element={<ItemListContainer greeting="Ofertas del mes de Agosto"/>} /> 
+              <Route path='/' element={<ItemListContainer/>}/>
+              <Route path='/marca/:marcaId' element={<ItemListContainer/>} /> 
               <Route path='/detalle/:detalleId' element={<ItemDetailContainer/>}/>
               <Route path="/Cart" element={<Cart/>}></Route>
               <Route path="/checkOut" element={<CheckOut></CheckOut>}></Route>
            </Routes>
+           <Footer/>
         </BrowserRouter>
      </div>
+     
   </>
    )
 }
