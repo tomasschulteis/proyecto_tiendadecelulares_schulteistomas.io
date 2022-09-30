@@ -18,7 +18,7 @@ const Rutas = () => {
               <Route path='/marca/:marcaId' element={<ItemListContainer/>} /> 
               <Route path='/detalle/:detalleId' element={<ItemDetailContainer/>}/>
               <Route path="/Cart" element={<Cart/>}></Route>
-              <Route path="/checkOut" element={<CheckOut></CheckOut>}></Route>
+              <Route path="/checkOut" element={<CheckOut/>}></Route>
            </Routes>
            <Footer/>
         </BrowserRouter>

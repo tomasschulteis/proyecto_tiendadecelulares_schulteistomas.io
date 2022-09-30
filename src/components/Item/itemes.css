@@ -1,10 +1,10 @@
 .card {
-    align-items: center;
+    align-items:center;
     float:left;
-    margin:40px;
+    margin:20px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    flex-wrap: wrap;
+    min-height: 76vh;
+    flex-wrap:nowrap;
 }
