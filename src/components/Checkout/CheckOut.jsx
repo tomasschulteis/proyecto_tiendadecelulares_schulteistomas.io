@@ -14,12 +14,9 @@ export default function CheckOut() {
    const [Provincia,setProvincia]=useState('')
    const [Localidad,setLocalidad]=useState('')
    const [Codigopostal,setCodigopostal]=useState('');
-   const [idcompra,setIdcompra]= useState('');
    const Lista ={articulos:items.map(item=>({id:item.id, modelo:item.modelo, precio:item.Precio, unidades:item.quantity, marca:item.marca})),}
    const Importefinal = {importefinal:  (items.reduce((pv,cv)=> pv + parseFloat(cv.Precio.replace("$","") * parseFloat(cv.quantity)),0))}
-   const mostraralerta=()=>(
-     Swal.fire("mensaje")
-   )
+
    function handleclick(){
      const pedido ={
      buyer:{ Name: Name, Surname: Surname,Documento: Documento, Email: Email, Phone: Phone, Adress:Adress, Provincia: Provincia, Localidad: Localidad, Codigopostal:Codigopostal,Lista,Importefinal},
