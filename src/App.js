@@ -1,7 +1,7 @@
 
 import './App.css';
 import Rutas from './components/Routes/Rutas';
-import {CartProvider} from '../components/Context/CartContext'
+import {CartProvider} from './components/Context/CartContext'
 
 
 
