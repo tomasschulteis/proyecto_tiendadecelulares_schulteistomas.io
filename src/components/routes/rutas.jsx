@@ -3,7 +3,7 @@ import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Navbar from '../Navbar/Navbar';
 import ItemListContainer from '../ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from '../ItemDetailContainer/ItemDetailContainer';
-import '../routes/Rutas.css';
+import './Rutas.css';
 import Cart from "../Cart/Cart";
 import CheckOut from "../Checkout/CheckOut";
 import Footer from "../Footer/Footer";
